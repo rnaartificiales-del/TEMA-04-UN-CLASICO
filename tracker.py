@@ -34,7 +34,7 @@ def where_is_it(frame, outputs):
     frame_h = frame.shape[0]
     frame_w = frame.shape[1]
     bboxes, probs, class_ids = [], [], []
-    for preds in outputs: # different detection scales
+    for preds in outputs:
         hits = np.any(preds[:, 5:] > P_THRESH, axis=1) & (preds[:, 4] > OBJ_THRESH)
         
         # Guarda la probabilidad y las coordenadas de la caja si el objectness y la probabilidad superan sus umbrales
@@ -46,7 +46,6 @@ def where_is_it(frame, outputs):
             height = int(pred[3] * frame_h)
             left = int(center_x - width / 2)
             top = int(center_y - height / 2)
-            # Append all info
             bboxes.append([left, top, width, height])
             probs.append(float(np.max(pred[5:])))
             class_ids.append(np.argmax(pred[5:]))
