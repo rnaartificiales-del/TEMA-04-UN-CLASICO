@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detector | Tecnológico de Tláhuac II</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Poppins:wght@400;500;600&family=Unbounded:wght@200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="bg" aria-hidden="true"></div>
+
+    <header class="nav">
+        <a class="logo" href="#inicio">
+            <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2.4"/>
+                <circle cx="16" cy="16" r="4.5" fill="currentColor"/>
+            </svg>
+            <span>DETECTOR</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Principal">
+            <a href="#transmision">Transmisión</a>
+            <a href="#detecciones">Detecciones</a>
+        </nav>
+
+    
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <p class="dict"><em>EQUIPO 5</em></p>
+            <h1 class="title">DETECTOR 1.0</h1>
+            <p class="subtitle">Detección y seguimiento de objetos en tiempo real<br>REDES NEURONALES ARTIFICIALES PARA LA TECNOLOGIA ASISTIVA</p>
+        </section>
+
+        <section class="stage" id="transmision">
+            <div class="panel video-panel">
+                <div class="panel-head">
+                    <h2>Camara en vivo</h2>
+                    <div class="head-right">
+                        <span class="chip">{{ source_label }}</span>
+                        <div class="badge" id="badge">
+                            <span class="dot"></span>
+                            <span id="badge-text">Conectando</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-wrap">
+                    <img id="video" src="{{ url_for('video_feed') }}" alt="Transmisión de video con objetos detectados">
+                    <div class="video-overlay" id="overlay">Esperando video...</div>
+                </div>
+            </div>
+
+            <aside class="panel side" id="detecciones">
+                <div class="metric">
+                    <span class="metric-label">Objetos detectados</span>
+                    <span class="metric-value" id="total">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">FPS</span>
+                    <span class="metric-value" id="fps">0</span>
+                </div>
+                <div class="list-block">
+                    <h3>En pantalla</h3>
+                    <ul class="objects" id="objects">
+                        <li class="empty">Sin detecciones</li>
+                    </ul>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="footer">
+        Instituto Tecnológico de Tláhuac II.
+    </footer>
+
+<script src="{{ url_for('static', filename='app.js') }}" defer></script>
+
+</body>
+</html>
